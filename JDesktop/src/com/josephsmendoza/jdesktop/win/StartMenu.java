@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -15,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 
 import com.josephsmendoza.jdesktop.Data;
+import com.josephsmendoza.jdesktop.win.settings.Settings;
 
 /**
  * Windows-style start menu
@@ -44,7 +47,16 @@ public class StartMenu extends JFrame {
 		Panel progs = new Panel();
 		progs.setLayout(new BoxLayout(progs, BoxLayout.Y_AXIS));
 		add(new JScrollPane(progs), BorderLayout.CENTER);
+
 		Button settings = new Button("Settings");
+		settings.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new Settings();
+			}
+
+		});
 		progs.add(settings);
 
 		Panel userNav = new Panel();

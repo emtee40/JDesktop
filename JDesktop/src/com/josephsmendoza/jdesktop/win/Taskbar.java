@@ -53,6 +53,7 @@ public class Taskbar extends JFrame {
 		});
 		add(exit);
 
+		setAlwaysOnTop(true);
 		setVisible(true);
 	}
 
