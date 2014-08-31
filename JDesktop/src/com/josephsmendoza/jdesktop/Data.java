@@ -1,5 +1,6 @@
 package com.josephsmendoza.jdesktop;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
@@ -21,6 +22,8 @@ public class Data {
 	public static final String os = System.getProperty("os.name");
 	public static byte taskbarHeight;
 	public static final String username = System.getProperty("user.name");
+	public static Color primary;
+	public static Color secondary;
 
 	/**
 	 * Gather all the data needed to run the program
@@ -37,8 +40,8 @@ public class Data {
 		}
 
 		try {
-			loadSettings(new File(username));
-		} catch (FileNotFoundException e) {
+			loadSettings();
+		} catch (Exception e) {
 			defaults();
 		}
 	}
@@ -48,6 +51,8 @@ public class Data {
 	 */
 	private static void defaults() {
 		taskbarHeight = 33;
+		primary = Color.LIGHT_GRAY;
+		secondary = Color.GRAY;
 	}
 
 	/**
@@ -58,15 +63,62 @@ public class Data {
 	 * @throws FileNotFoundException
 	 *             if the file is missing
 	 */
-	private static void loadSettings(File file) throws FileNotFoundException {
+	private static void loadSettings() throws FileNotFoundException {
 		// get the file to read from; returns the error
-		Scanner in = new Scanner(file);
+		Scanner in = new Scanner(username);
 
 		// Get the settings
 		taskbarHeight = in.nextByte();
+		in.nextLine();
+		primary = getColor();
+		secondary = getColor();
 
 		// close the thing
 		in.close();
+	}
+
+	private static Color getColor() {
+		String color = new Scanner(username).nextLine();
+		if (color.equals(Color.BLACK)) {
+			return Color.BLACK;
+		}
+		if (color.equals(Color.BLUE)) {
+			return Color.BLUE;
+		}
+		if (color.equals(Color.CYAN)) {
+			return Color.CYAN;
+		}
+		if (color.equals(Color.DARK_GRAY)) {
+			return Color.DARK_GRAY;
+		}
+		if (color.equals(Color.GRAY)) {
+			return Color.GRAY;
+		}
+		if (color.equals(Color.GREEN)) {
+			return Color.GREEN;
+		}
+		if (color.equals(Color.LIGHT_GRAY)) {
+			return Color.LIGHT_GRAY;
+		}
+		if (color.equals(Color.MAGENTA)) {
+			return Color.MAGENTA;
+		}
+		if (color.equals(Color.ORANGE)) {
+			return Color.ORANGE;
+		}
+		if (color.equals(Color.PINK)) {
+			return Color.PINK;
+		}
+		if (color.equals(Color.RED)) {
+			return Color.RED;
+		}
+		if (color.equals(Color.WHITE)) {
+			return Color.WHITE;
+		}
+		if (color.equals(Color.YELLOW)) {
+			return Color.YELLOW;
+		}
+		return null;
 	}
 
 	/**
@@ -88,6 +140,8 @@ public class Data {
 
 		// Write the settings IN THE SAME ORDER as they are read
 		out.println(taskbarHeight);
+		out.println(primary);
+		out.println(secondary);
 
 		// close the thing
 		out.close();

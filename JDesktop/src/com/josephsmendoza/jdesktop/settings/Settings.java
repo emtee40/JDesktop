@@ -8,6 +8,8 @@ import java.awt.Panel;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 
+import com.josephsmendoza.jdesktop.Data;
+
 public class Settings extends JFrame {
 
 	/**
@@ -19,6 +21,7 @@ public class Settings extends JFrame {
 
 	public Settings() {
 		super();
+		setBackground(Data.primary);
 		setTitle("Jdesktop-Settings");
 		Main m = new Main();
 		add(m, BorderLayout.CENTER);

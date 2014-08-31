@@ -30,6 +30,8 @@ public class Taskbar extends JFrame {
 		setBounds(0, Data.screenSize.height - Data.taskbarHeight,
 				Data.screenSize.width, Data.taskbarHeight);
 		setLayout(new FlowLayout(FlowLayout.LEFT));
+		setBackground(Data.primary);
+
 		Button start = new Button("Start");
 		start.addActionListener(new ActionListener() {
 
