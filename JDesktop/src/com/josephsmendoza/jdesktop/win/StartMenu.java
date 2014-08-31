@@ -17,7 +17,6 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 import com.josephsmendoza.jdesktop.Data;
-import com.josephsmendoza.jdesktop.settings.Settings;
 
 /**
  * Windows-style start menu
@@ -55,7 +54,7 @@ public class StartMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				Data.s = new Settings();
+				Data.settings();
 			}
 
 		});

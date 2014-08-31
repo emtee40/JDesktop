@@ -42,6 +42,7 @@ public class Data {
 		try {
 			loadSettings();
 		} catch (Exception e) {
+			e.printStackTrace();
 			defaults();
 		}
 	}
@@ -63,65 +64,16 @@ public class Data {
 	 */
 	private static void loadSettings() throws FileNotFoundException {
 		// get the file to read from; returns the error
-		Scanner in = new Scanner(username);
+		Scanner in = new Scanner(new File(username));
 
 		// Get the settings
 		taskbarHeight = in.nextByte();
 		in.nextLine();
-		primary = getColor();
-		secondary = getColor();
+		primary = new Color(Integer.parseInt(in.nextLine()));
+		secondary = new Color(Integer.parseInt(in.nextLine()));
 
 		// close the thing
 		in.close();
-	}
-
-	/**
-	 * Gets color from config file, assuming nextLine() returns color.toString()
-	 * 
-	 * @return Color from config
-	 */
-	private static Color getColor() {
-		String color = new Scanner(username).nextLine();
-		if (color.equals(Color.BLACK)) {
-			return Color.BLACK;
-		}
-		if (color.equals(Color.BLUE)) {
-			return Color.BLUE;
-		}
-		if (color.equals(Color.CYAN)) {
-			return Color.CYAN;
-		}
-		if (color.equals(Color.DARK_GRAY)) {
-			return Color.DARK_GRAY;
-		}
-		if (color.equals(Color.GRAY)) {
-			return Color.GRAY;
-		}
-		if (color.equals(Color.GREEN)) {
-			return Color.GREEN;
-		}
-		if (color.equals(Color.LIGHT_GRAY)) {
-			return Color.LIGHT_GRAY;
-		}
-		if (color.equals(Color.MAGENTA)) {
-			return Color.MAGENTA;
-		}
-		if (color.equals(Color.ORANGE)) {
-			return Color.ORANGE;
-		}
-		if (color.equals(Color.PINK)) {
-			return Color.PINK;
-		}
-		if (color.equals(Color.RED)) {
-			return Color.RED;
-		}
-		if (color.equals(Color.WHITE)) {
-			return Color.WHITE;
-		}
-		if (color.equals(Color.YELLOW)) {
-			return Color.YELLOW;
-		}
-		return null;
 	}
 
 	/**
@@ -143,14 +95,14 @@ public class Data {
 
 		// Write the settings IN THE SAME ORDER as they are read
 		out.println(taskbarHeight);
-		out.println(primary);
-		out.println(secondary);
+		out.println(Integer.toString(primary.getRGB()));
+		out.println(Integer.toString(secondary.getRGB()));
 
 		// close the thing
 		out.close();
 	}
 
-	public void Settings() {
+	public static void settings() {
 		s = new com.josephsmendoza.jdesktop.settings.Settings();
 	}
 }

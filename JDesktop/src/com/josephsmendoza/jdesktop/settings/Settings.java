@@ -25,7 +25,7 @@ public class Settings extends JFrame {
 		setBackground(Data.primary);
 		setTitle("Jdesktop-Settings");
 		active = new Main();
-		add(new Main(), BorderLayout.CENTER);
+		add(active, BorderLayout.CENTER);
 
 		Panel navPane = new Panel();
 		navPane.setLayout(new FlowLayout(FlowLayout.LEFT));
