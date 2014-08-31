@@ -5,19 +5,20 @@ package com.josephsmendoza.jdesktop.win;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
 
 import com.josephsmendoza.jdesktop.Data;
-import com.josephsmendoza.jdesktop.win.settings.Settings;
+import com.josephsmendoza.jdesktop.settings.Settings;
 
 /**
  * Windows-style start menu
@@ -29,24 +30,26 @@ public class StartMenu extends JFrame {
 	private static final long serialVersionUID = 719685236873744245L;
 
 	public StartMenu() {
-		super();
-		setBounds(0, (Data.screenSize.height / 2) - Data.taskbarHeight,
-				Data.screenSize.width / 4, Data.screenSize.height / 2);
-		addFocusListener(new FocusListener() {
+		setTitle("JDesktop-Windows");
+		addWindowListener(new WindowAdapter() {
 
 			@Override
-			public void focusGained(FocusEvent arg0) {
+			public void windowIconified(WindowEvent wEvt) {
 			}
 
 			@Override
-			public void focusLost(FocusEvent arg0) {
+			public void windowDeactivated(WindowEvent wEvt) {
 				setVisible(false);
 			}
 
 		});
+
+		setBounds(0, (Data.screenSize.height / 2) - Data.taskbarHeight,
+				Data.screenSize.width / 4, Data.screenSize.height / 2);
+
 		Panel progs = new Panel();
-		progs.setLayout(new BoxLayout(progs, BoxLayout.Y_AXIS));
-		add(new JScrollPane(progs), BorderLayout.CENTER);
+		progs.setLayout(new FlowLayout());
+		add(progs, BorderLayout.WEST);
 
 		Button settings = new Button("Settings");
 		settings.addActionListener(new ActionListener() {
@@ -61,13 +64,21 @@ public class StartMenu extends JFrame {
 
 		Panel userNav = new Panel();
 		add(userNav, BorderLayout.NORTH);
-		userNav.setLayout(new BoxLayout(userNav, BoxLayout.X_AXIS));
+		userNav.setLayout(new FlowLayout());
+		userNav.setBackground(Color.LIGHT_GRAY);
 		userNav.add(new Label(Data.username));
 
 		Panel sidebar = new Panel();
-		sidebar.setLayout(new BoxLayout(sidebar, BoxLayout.Y_AXIS));
+		sidebar.setLayout(new GridLayout(20, 1));
+		sidebar.setBackground(Color.LIGHT_GRAY);
 		// TODO setup dis stuffs
 		add(sidebar, BorderLayout.EAST);
+
+		Button home = new Button(Data.username);
+		sidebar.add(home);
+
+		setResizable(false);
+		setUndecorated(true);
 	}
 
 }

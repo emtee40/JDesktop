@@ -37,7 +37,7 @@ public class Data {
 		}
 
 		try {
-			loadSettings(new File("settings.txt"));
+			loadSettings(new File(username));
 		} catch (FileNotFoundException e) {
 			defaults();
 		}
@@ -70,23 +70,21 @@ public class Data {
 	}
 
 	/**
-	 * write settings to file
+	 * write settings to a file
 	 * 
 	 * @param file
 	 *            the file to write to
 	 * @throws FileNotFoundException
-	 *             If the given file object does not denote an existing,
-	 *             writable regular file and a new regular file of that name
-	 *             cannot be created, or if some other error occurs while
-	 *             opening or creating the file
+	 *             If a new regular file cannot be created, or if some other
+	 *             error occurs while opening or creating the file
 	 * @throws SecurityException
 	 *             If a security manager is present and
 	 *             checkWrite(file.getPath()) denies write access to the file
 	 */
-	public static void writeSettings(File file) throws FileNotFoundException,
+	public static void writeSettings() throws FileNotFoundException,
 			SecurityException {
 		// get the file to write to; returns the error
-		PrintWriter out = new PrintWriter(file);
+		PrintWriter out = new PrintWriter(username);
 
 		// Write the settings IN THE SAME ORDER as they are read
 		out.println(taskbarHeight);

@@ -1,4 +1,4 @@
-package com.josephsmendoza.jdesktop.win.settings;
+package com.josephsmendoza.jdesktop.settings;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -15,24 +15,27 @@ public class Settings extends JFrame {
 	 */
 	private static final long serialVersionUID = -9156641949521141769L;
 
+	Label dir;
+
 	public Settings() {
 		super();
-		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-		add(new Main(), BorderLayout.CENTER);
+		setTitle("Jdesktop-Settings");
+		Main m = new Main();
+		add(m, BorderLayout.CENTER);
 
 		Panel navPane = new Panel();
 		navPane.setLayout(new BoxLayout(navPane, BoxLayout.X_AXIS));
+		add(navPane, BorderLayout.NORTH);
+
 		Button back = new Button("<");
 		// ActionListener(go back)
 		navPane.add(back);
 
-		Label dir = new Label();
-		// setDir
+		dir = new Label("Main");
 		navPane.add(dir);
 
-		add(navPane, BorderLayout.NORTH);
-
 		pack();
+		setResizable(false);
 		setVisible(true);
 	}
 }
