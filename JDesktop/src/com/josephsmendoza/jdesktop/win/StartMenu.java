@@ -55,7 +55,7 @@ public class StartMenu extends JFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new Settings();
+				Data.s = new Settings();
 			}
 
 		});

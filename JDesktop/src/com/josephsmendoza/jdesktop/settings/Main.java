@@ -6,9 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
-import javax.swing.JPanel;
 
-public class Main extends JPanel {
+import com.josephsmendoza.jdesktop.Data;
+
+public class Main extends Panel {
 
 	public Main() {
 
@@ -24,7 +25,7 @@ public class Main extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				add(new Color());
+				Data.s.setPane(new Color());
 
 			}
 

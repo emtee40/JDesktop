@@ -12,7 +12,6 @@ import java.util.Scanner;
  * the source of all data. Any config or editable params should go here.
  * 
  * @author josephsmendoza
- * @version 1
  */
 public class Data {
 
@@ -24,6 +23,7 @@ public class Data {
 	public static final String username = System.getProperty("user.name");
 	public static Color primary;
 	public static Color secondary;
+	public static com.josephsmendoza.jdesktop.settings.Settings s;
 
 	/**
 	 * Gather all the data needed to run the program
@@ -47,7 +47,7 @@ public class Data {
 	}
 
 	/**
-	 * Load default settings. Called if no config file is found
+	 * Load default settings.
 	 */
 	private static void defaults() {
 		taskbarHeight = 33;
@@ -56,10 +56,8 @@ public class Data {
 	}
 
 	/**
-	 * Load settings from a file.
+	 * Load settings from user config file.
 	 * 
-	 * @param file
-	 *            the file to read from
 	 * @throws FileNotFoundException
 	 *             if the file is missing
 	 */
@@ -77,6 +75,11 @@ public class Data {
 		in.close();
 	}
 
+	/**
+	 * Gets color from config file, assuming nextLine() returns color.toString()
+	 * 
+	 * @return Color from config
+	 */
 	private static Color getColor() {
 		String color = new Scanner(username).nextLine();
 		if (color.equals(Color.BLACK)) {
@@ -145,5 +148,9 @@ public class Data {
 
 		// close the thing
 		out.close();
+	}
+
+	public void Settings() {
+		s = new com.josephsmendoza.jdesktop.settings.Settings();
 	}
 }
