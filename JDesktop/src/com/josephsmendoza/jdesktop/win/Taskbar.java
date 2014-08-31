@@ -70,7 +70,6 @@ public class Taskbar extends JFrame {
 	}
 
 	private void addButtons() {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -18,6 +18,7 @@ public class Data {
 	public static Dimension screenSize = Toolkit.getDefaultToolkit()
 			.getScreenSize();
 	public static File progsDir;
+	public static File[] progs;
 	public static final String os = System.getProperty("os.name");
 	public static byte taskbarHeight;
 	public static final String username = System.getProperty("user.name");
@@ -30,14 +31,16 @@ public class Data {
 	 */
 	public static void init() {
 		if (os.equals("Linux")) {
-			progsDir = new File("/usr/bin/");
+			progsDir = new File("/usr/bin");
 		}
 		if (os.equals("osx")) {
-			progsDir = new File("/Applications/");
+			progsDir = new File("/Applications");
 		}
 		if (os.equals("Windows")) {
-			progsDir = new File(os);// TODO Find windows start menu
+			progsDir = new File("C:\\Program Files");// TODO Find windows start
+														// menu
 		}
+		progs = progsDir.listFiles();
 
 		try {
 			loadSettings();

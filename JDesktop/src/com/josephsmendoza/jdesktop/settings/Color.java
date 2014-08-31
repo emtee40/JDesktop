@@ -29,8 +29,6 @@ public class Color extends Panel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				Data.primary = primary.getColor();
-				System.out.println(Integer
-						.toString(primary.getColor().getRGB()));
 			}
 
 		});
@@ -43,8 +41,6 @@ public class Color extends Panel {
 			@Override
 			public void stateChanged(ChangeEvent arg0) {
 				Data.secondary = secondary.getColor();
-				System.out.println(Integer.toString(secondary.getColor()
-						.getRGB()));
 			}
 
 		});

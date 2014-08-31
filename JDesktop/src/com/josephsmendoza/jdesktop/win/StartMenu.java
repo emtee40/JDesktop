@@ -13,8 +13,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 import com.josephsmendoza.jdesktop.Data;
 
@@ -46,8 +50,10 @@ public class StartMenu extends JFrame {
 		setBackground(Data.primary);
 
 		Panel progs = new Panel();
-		progs.setLayout(new FlowLayout());
-		add(progs, BorderLayout.WEST);
+		JScrollPane progPane = new JScrollPane(progs);
+		progs.setLayout(new BoxLayout(progs, BoxLayout.Y_AXIS));
+		progPane.getVerticalScrollBar().setUnitIncrement(16);
+		add(progPane, BorderLayout.CENTER);
 
 		Button settings = new Button("Settings");
 		settings.addActionListener(new ActionListener() {
@@ -59,6 +65,24 @@ public class StartMenu extends JFrame {
 
 		});
 		progs.add(settings);
+
+		for (final File f : Data.progs) {
+			Button b = new Button(f.getName());
+			b.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						Runtime.getRuntime().exec(f.getAbsolutePath());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+			});
+			progs.add(b);
+		}
 
 		Panel userNav = new Panel();
 		add(userNav, BorderLayout.NORTH);
