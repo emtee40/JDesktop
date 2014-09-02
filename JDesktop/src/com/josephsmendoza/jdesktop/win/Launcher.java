@@ -1,8 +1,8 @@
-package com.josephsmendoza.jdesktop;
+package com.josephsmendoza.jdesktop.win;
 
 import javax.swing.UIManager;
 
-import com.josephsmendoza.jdesktop.win.Taskbar;
+import com.josephsmendoza.jdesktop.Data;
 
 public class Launcher {
 
