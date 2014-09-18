@@ -11,6 +11,7 @@ public class Launcher {
 		} catch (Exception e) {
 		}
 		new Taskbar();
+		new ProgsMenu();
 	}
 
 }

@@ -31,7 +31,7 @@ public class Data {
 	 */
 	public static void init() {
 		if (os.equals("Linux")) {
-			progsDir = new File("/usr/bin");
+			progsDir = new File("/usr/share/applications");
 		}
 		if (os.equals("osx")) {
 			progsDir = new File("/Applications");
